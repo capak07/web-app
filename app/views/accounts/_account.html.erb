@@ -1,22 +1,11 @@
-<div id="<%= dom_id account %>">
-  <p>
-    <strong>First name:</strong>
-    <%= account.first_name %>
-  </p>
-
-  <p>
-    <strong>Last name:</strong>
-    <%= account.last_name %>
-  </p>
-
-  <p>
-    <strong>Balance:</strong>
-    <%= account.balance %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= account.email %>
-  </p>
-
+<div class="card" style="width: 20rem; background: dark;">
+  <div class="card-header">
+    <strong>Account Details</strong>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">First Name: <%= account.first_name %></li>
+    <li class="list-group-item">Last Name: <%= account.last_name %></li>
+    <li class="list-group-item">Balance : <%= account.balance %></li>
+    <li class="list-group-item">Email:  <%= account.email %></li>
+  </ul>
 </div>

@@ -6,6 +6,10 @@ class AccountsController < ApplicationController
     @accounts = Account.all
   end
 
+  def about
+    
+  end
+
   # GET /accounts/1 or /accounts/1.json
   def show
   end

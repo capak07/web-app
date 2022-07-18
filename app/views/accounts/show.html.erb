@@ -1,10 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @account %>
+<%= render @account %><br/>
 
 <div>
-  <%= link_to "Edit this account", edit_account_path(@account) %> |
-  <%= link_to "Back to accounts", accounts_path %>
+  <%= link_to "Edit this account", edit_account_path(@account), class: "btn btn-dark " %>
+  <%= link_to "Back to accounts", accounts_path, class: "btn btn-dark" %><br><br><br><br>
 
-  <%= button_to "Destroy this account", @account, method: :delete %>
+  <%= button_to "Destroy this account", @account, method: :delete, class: "btn btn-primary" %>
 </div>
