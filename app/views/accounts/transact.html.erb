@@ -1,0 +1,13 @@
+<div class="container">
+    <%= form_with do |form| %>
+        <div>
+            <%= form.label :Enter_Amount, style: "display: block" %>
+            <%= form.text_field :balance, style: "display: block", class: "form-control" %>
+        </div>
+
+        <div>
+        <br>
+        <%= form.submit :Credit, class: "btn btn-dark" %>
+        </div>
+    <% end %>
+</div>

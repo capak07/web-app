@@ -1,28 +1,30 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Accounts</h1>
+<div class="container container-fluid ">
+  <h1>Accounts</h1>
 
-<table class="table-striped table table-bordered table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">AccountID</th>
-      <th scope="col">FirsttName</th>
-      <th scope="col">LastName</th>
-      <th scope="col">Email</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @accounts.each do |account| %>
+  <table class="table-striped table table-bordered table-hover">
+    <thead class="thead-dark">
       <tr>
-        <th scope="row"><%= account.id %></th>
-        <td><%= account.first_name %></td>
-        <td><%= account.last_name %></td>
-        <td><%= account.email %></td>
-        <td><%= link_to "Show this account", account, class: "btn btn-dark" %></td>
+        <th scope="col">AccountID</th>
+        <th scope="col">FirsttName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Email</th>
+        <th scope="col"></th>
       </tr>
-    <% end %>
-  </tbody>
-  </table><br><br><br><r>
+    </thead>
+    <tbody>
+      <% @accounts.each do |account| %>
+        <tr>
+          <th scope="row"><%= account.id %></th>
+          <td><%= account.first_name %></td>
+          <td><%= account.last_name %></td>
+          <td><%= account.email %></td>
+          <td><%= link_to "Show this account", account, class: "btn btn-dark" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table><br><br><br><r>
 
-<%= link_to "New account", new_account_path, class: "btn btn-dark" %>
+  <%= link_to "New account", new_account_path, class: "btn btn-dark" %>
+</div>
