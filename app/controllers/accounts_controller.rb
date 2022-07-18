@@ -6,6 +6,10 @@ class AccountsController < ApplicationController
     @accounts = Account.all
   end
 
+  def about
+    
+  end
+
   # GET /accounts/1 or /accounts/1.json
   def show
   end
@@ -17,6 +21,10 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/edit
   def edit
+  end
+
+  def transact
+    @account = Account.find(params[:id])  
   end
 
   # POST /accounts or /accounts.json
@@ -54,6 +62,20 @@ class AccountsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to accounts_url, notice: "Account was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def credit(amount)
+    @account = Account.find( params[:id])
+    curr = @account..balance.to_i
+    @account.update( balance: curr + amount)
+    @account.reload
+    if @account.update(account_params)
+      format.html { redirect_to account_url(@account), notice: "Money was credited successfully" }
+      format.json { render json: :show, status: :ok, location: @account }
+    else
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @account.errors, status: :unprocessable_entity }
     end
   end
 
