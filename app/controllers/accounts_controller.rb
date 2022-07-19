@@ -6,10 +6,6 @@ class AccountsController < ApplicationController
     @accounts = Account.all
   end
 
-  def about
-    
-  end
-
   # GET /accounts/1 or /accounts/1.json
   def show
   end
@@ -65,19 +61,24 @@ class AccountsController < ApplicationController
     end
   end
 
-  def credit(amount)
+  def deposit(amount)
     @account = Account.find( params[:id])
-    curr = @account..balance.to_i
-    @account.update( balance: curr + amount)
+    @account.update(balance: @account.balance.to_i + 1000)
     @account.reload
-    if @account.update(account_params)
-      format.html { redirect_to account_url(@account), notice: "Money was credited successfully" }
-      format.json { render json: :show, status: :ok, location: @account }
-    else
-      format.html { render :edit, status: :unprocessable_entity }
-      format.json { render json: @account.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      format.html { redirect_to account_path(@account), notice: "Amount was successfully deposited." }
     end
   end
+
+  def withdraw()
+    @account = Account.find( params[:id])
+    @account.update(balance: @account.balance.to_i - 1000)
+    @account.reload
+    respond_to do |format|
+      format.html { redirect_to account_path(@account), notice: "Amount was successfully withdrawn." }
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
