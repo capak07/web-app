@@ -61,22 +61,25 @@ class AccountsController < ApplicationController
     end
   end
 
-  def deposit(amount)
+  def deposit()
+    @amount = params[:format]
     @account = Account.find( params[:id])
-    @account.update(balance: @account.balance.to_i + 1000)
-    @account.reload
-    respond_to do |format|
-      format.html { redirect_to account_path(@account), notice: "Amount was successfully deposited." }
+    t = @account.update(balance: @account.balance.to_i + @amount.to_i)
+    if t
+      redirect_to account_url, notice: "Amount was credited"
     end
+    @account.reload
+    
   end
 
   def withdraw()
+    @amount = params[:format]
     @account = Account.find( params[:id])
-    @account.update(balance: @account.balance.to_i - 1000)
-    @account.reload
-    respond_to do |format|
-      format.html { redirect_to account_path(@account), notice: "Amount was successfully withdrawn." }
+    t = @account.update(balance: @account.balance.to_i - @amount.to_i)
+    if t
+      redirect_to account_url, notice: "Amount was credited"
     end
+    @account.reload
   end
 
 
