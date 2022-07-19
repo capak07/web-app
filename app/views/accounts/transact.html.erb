@@ -1,13 +1,16 @@
 <div class="container">
     <%= form_with do |form| %>
         <div>
-            <%= form.label :Enter_Amount, style: "display: block" %>
-            <%= form.text_field :balance, style: "display: block", class: "form-control" %>
+            <br><br><br><h5 class="text-left" id="amount">Amount:</h3>
+            <%= form.text_field :amount, style: "display: block", class: "form-control" %>
         </div>
 
         <div>
         <br>
-        <%= form.submit :Credit, class: "btn btn-dark" %>
+        <%= link_to "Credit", deposit_account_path  , class: "btn btn-dark" %>   
+        <%= link_to "Debit",[:withdraw, a], class: "btn btn-dark" %>  
+
+        <br><br><br><%= link_to "Back to Account", account_path(@account), class: "btn btn-dark"%>
         </div>
     <% end %>
 </div>
