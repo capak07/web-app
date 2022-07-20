@@ -1,13 +1,20 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: %i[ show edit update destroy ]
+  protect_from_forgery with: :null_session
+  before_action :set_account, only: %i[ show edit update destroy deposit ]
+
+  $amount
 
   # GET /accounts or /accounts.json
   def index
     @accounts = Account.all
+
+    render json: { status: 'success',message: 'Accounts List', data: @accounts }, status: :ok
   end
 
   # GET /accounts/1 or /accounts/1.json
   def show
+    @account = Account.find(params[:id])
+    render json: { status: 'success', message: 'Account Data', data: @account }
   end
 
   # GET /accounts/new
@@ -26,60 +33,52 @@ class AccountsController < ApplicationController
   # POST /accounts or /accounts.json
   def create
     @account = Account.new(account_params)
-
-    respond_to do |format|
-      if @account.save
-        format.html { redirect_to account_url(@account), notice: "Account was successfully created." }
-        format.json { render :show, status: :created, location: @account }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
-      end
+    if @account.save
+      render json: { status: 'success', message: 'Account was created', data: @account }
+    else
+      render json: { status: 'error', error: @account.errors.get_message }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /accounts/1 or /accounts/1.json
   def update
-    respond_to do |format|
-      if @account.update(account_params)
-        format.html { redirect_to account_url(@account), notice: "Account was successfully updated." }
-        format.json { render :show, status: :ok, location: @account }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
-      end
+    @account = Account.find(params[:id])
+    if @account.update(account_params)
+      render json: { status:'success', message: 'Account was updated', data: @account }, status: :ok
+    else
+      render json: { status: 'error', error: @account.errors.gets_message }, status: :unprocessable_entity
     end
   end
 
   # DELETE /accounts/1 or /accounts/1.json
   def destroy
     @account.destroy
+    render json: { status: :deleted, message: 'Account was successfully destroyed.', data: @account },status: :deleted 
 
-    respond_to do |format|
-      format.html { redirect_to accounts_url, notice: "Account was successfully destroyed." }
-      format.json { head :no_content }
-    end
   end
 
-  def deposit()
-    @amount = params[:format]
+  # PATCH /accounts/1/transact or /accounts/1/transact.json
+  def deposit
     @account = Account.find( params[:id])
-    t = @account.update(balance: @account.balance.to_i + @amount.to_i)
+    t = @account.update(balance: @account.balance.to_i + account_params[:balance].to_i)
     if t
-      redirect_to account_url, notice: "Amount was credited"
+      @account.reload
+      render json: { status: 'success', message: 'Amount was deposit successfully',data: @account }, status: :ok
+    else
+      render json: { status: 'error', message: t.errors.get_message, data: @account }, status: :unprocessable_entity
     end
-    @account.reload
     
   end
 
-  def withdraw()
-    @amount = params[:format]
+  def withdraw
     @account = Account.find( params[:id])
-    t = @account.update(balance: @account.balance.to_i - @amount.to_i)
+    t = @account.update(balance: @account.balance.to_i - account_params[:balance].to_i)
     if t
-      redirect_to account_url, notice: "Amount was credited"
+      @account.reload
+      render json: { status: 'success', message: 'Amount was debited successfully', data: @account }, status: :ok
+    else
+      render json: { status: 'error', message: t.errors.get_message }, status: :unprocessable_entity
     end
-    @account.reload
   end
 
 
@@ -91,6 +90,6 @@ class AccountsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def account_params
-      params.require(:account).permit(:first_name, :last_name, :balance, :email)
+      params.require(:account).permit(:first_name, :last_name,:balance, :email)
     end
 end
