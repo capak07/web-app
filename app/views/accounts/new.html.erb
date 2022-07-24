@@ -1,8 +1,8 @@
 
 <div class="container">
-  <h1>New account</h1>
+  <h2 class="text-white text-center">New account</h2><br>
   <%= render "form", account: @account %>
   <br><br><br><br>
 
-  <%= link_to "Back to accounts", accounts_path, class: "btn btn-dark" %>
+  <%= link_to "Back to accounts", @account, class: "btn btn-dark" %>
 </div>
