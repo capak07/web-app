@@ -1,11 +1,12 @@
 <div class="credit center">
         <div class="jumbotron mt-5 mx-6 bg-dark">
-                <%= form_with(model: @account, url: deposit_account_path) do |form |%>
+                <h5 class="text-white">Account Balance: <%= @account.balance %> $</h5>
+                <%= form_with(model: @account, url: withdraw_account_path) do |form |%>
                 <li class="list-group"><div class="mb-3">
                 <%= form.label :Enter_Amount, class: "text text-white"%>
                 <%= form.text_field :balance, class: "form-control", value: "0.0" %>
                 </div></li>
-                <br><%= form.submit "Credit", class: "btn btn-dark bg-primary"%>
+                <%= form.submit "Debit", class: "btn btn-dark bg-primary"%>
         <% end %>
         </div>
 </div>

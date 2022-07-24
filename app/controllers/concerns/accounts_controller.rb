@@ -13,6 +13,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1 or /accounts/1.json
   def show
     @account = Account.find(params[:id])
+    
   end
 
   # GET /accounts/new
@@ -24,6 +25,10 @@ class AccountsController < ApplicationController
   def edit
   end
 
+  def debit
+    @account = Account.find(params[:id]) 
+  end
+
   def transact
     @account = Account.find(params[:id])  
   end
@@ -31,10 +36,12 @@ class AccountsController < ApplicationController
   # POST /accounts or /accounts.json
   def create
     @account = Account.new(account_params)
+    user = User.create(id: @account.id,name: @account.first_name + " " + @account.last_name,email: @account.email)
+    UserMailer.with(user: user).welcome_email.deliver_now 
     respond_to do |format|
       if @account.save
         format.json { render json: { status: 'success', message: 'Account was created', data: @account } }
-        format.html { redirect_to @account, notice: 'Account was successfully created.' } 
+        format.html { redirect_to @account, notice: 'Account was successfully created.' }
       else
         format.json { render json: { status: 'error', error: @account.errors.get_message }, status: :unprocessable_entity }
         format.html { render :new, status: :unprocessable_entity }
@@ -58,7 +65,9 @@ class AccountsController < ApplicationController
 
   # DELETE /accounts/1 or /accounts/1.json
   def destroy
+    user = User.find(@account.id)
     @account.destroy
+    user.destroy
     respond_to do |format|
       redirect_to accounts_path
     end
@@ -87,7 +96,7 @@ class AccountsController < ApplicationController
       if t
         @account.reload
         format.json { render json: { status: 'success', message: 'Amount was debited successfully', data: @account }, status: :ok }
-        format.html { redirect_to @account, notice: 'Amount was depposited successfully' }
+        format.html { redirect_to @account, notice: 'Amount was withdrawed successfully' }
       else
         format.json { render json: { status: 'error', message: t.errors.get_message }, status: :unprocessable_entity }
         format.html { render :transact, status: :unprocessable_entity }
