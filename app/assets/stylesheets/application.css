@@ -48,14 +48,7 @@ body {
         -o-background-size: cover;
     }
 
-    .about {
-        background: url('https://4kwallpapers.com/images/walls/thumbs_2t/8312.png') no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        background-size: cover;
-        -o-background-size: cover;
-        height: 682px;
-    }
+   
 
 
     @import url(https://fonts.googleapis.com/css?family=Saira+Stencil+One);
@@ -68,6 +61,12 @@ body {
         align-items: center;
         justify-content: center;
         min-height: 683px;
+        background: url('https://4kwallpapers.com/images/walls/thumbs_2t/8312.png') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        height: 682px;
       }
       h1 {
         color: hsl(0, 0%, 28%);
