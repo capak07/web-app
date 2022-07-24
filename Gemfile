@@ -69,4 +69,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "http"
+  gem "httparty"
+  gem "uri"
+  gem "net-http"
 end

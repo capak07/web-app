@@ -13,3 +13,86 @@
  *= require_tree .
  *= require_self
  */
+
+
+body {
+    background: url('https://4kwallpapers.com/images/walls/thumbs_2t/8324.png') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+      -o-background-size: cover;
+    }
+
+    .credit {
+        max-width: 400px ;
+        max-height: 200px ;
+    } 
+    
+    .center {
+        margin: auto;
+        width: 50%;
+        border: 3px
+        padding: 10px;
+    }
+
+    .mt-5 {
+        margin-top: 3rem!important;
+        max-height: 250px;
+    }
+
+    .home {
+        
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+    }
+
+    .about {
+        background: url('https://4kwallpapers.com/images/walls/thumbs_2t/8312.png') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        height: 682px;
+    }
+
+
+    @import url(https://fonts.googleapis.com/css?family=Saira+Stencil+One);
+
+    .anm {
+        padding: 0;
+        margin: 0;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 683px;
+      }
+      h1 {
+        color: hsl(0, 0%, 28%);
+        font-size: 70px;
+        font-weight: bold;
+        font-family: monospace;
+        letter-spacing: 7px;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+      
+      h1 {
+        padding: 64px;
+        background: linear-gradient(to right, hsl(0, 0%, 30%) 0, hsl(0, 0%, 100%) 10%, hsl(0, 0%, 30%) 20%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 3s;
+      }
+      
+      @keyframes shine {
+        0% {
+          background-position: 0px;
+        }
+        
+        100% {
+          background-position: 680px;
+        }
+    }

@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  resources :accounts do
-    member do
-      get :deposit
-      get :withdraw
+  resources :users
+    resources :accounts do
+      member do
+        get '/transact', to: 'accounts#transact', as: 'transact'
+        get '/debit', to: 'accounts#debit', as: 'debit'
+        patch '/deposit', to: 'accounts#deposit', as: 'deposit'
+        patch '/withdraw', to: 'accounts#withdraw', as: 'withdraw'
+      end
     end
-  end
   root 'pages#home'
   get 'pages/about'
-  get '/accounts/:id/transact', to: 'accounts#transact', as: 'transact'
-  patch '/accounts/:id/credit', to: 'accounts#credit', as: 'credit'
 end

@@ -1,10 +1,10 @@
-
-<div class="container">
+<div class="container text-center">
     <p style="color: green"><%= notice %></p>
-    <%= render @account %><br/>
+  <%= render @account %><br/>
   <%= link_to "Edit this account", edit_account_path(@account), class: "btn btn-dark " %>
-  <%= link_to "Back to accounts", accounts_path, class: "btn btn-dark" %>
-  <%= link_to "Transact", transact_path ,class: "btn btn-dark" %><br><br><br><br>
+  <%= link_to "Credit", transact_account_path ,class: "btn btn-dark" %>
+  <%= link_to "Debit", debit_account_path ,class: "btn btn-dark" %><br><br>
+  <%= link_to "Back to accounts", accounts_path, class: "btn btn-primary" %><br>
 
-  <%= button_to "Destroy this account", @account, method: :delete, class: "btn btn-primary" %>
+  <%= link_to "Destroy this account", @account, method: :delete, class: "btn btn-danger mt-3" %>
 </div>
