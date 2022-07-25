@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
     
 
     def demo
-        mail(to: "atharvabkadam@gmail.com", subject: "Test", message: "Test Email sent successfully")
+        mail(to: "akadam1@unb.ca", subject: "Test", message: "Test Email sent successfully")
 
     end
 

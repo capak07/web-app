@@ -4,14 +4,21 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com, <%= @user.name %></h1>
+    <h1>Welcome to the Website, <%= @user.name %></h1>
     <p>
-      You have successfully signed up to example.com,
-      your username is: <%= @user.login %>.<br>
+      You have successfully registered account with us.<br>
+      Your username is: <%= @user.login %>.<br>
     </p>
     <p>
-      To login to the site, just follow this link: <%= @url %>.
+      If you need to check your balance go to: <br>
+      <%= @user.email%>
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>Thanks for joining and have a great day!<br>
+    ----------------------------------------------------------------------------------
+                  This is an auto generated email, do not reply
+    ----------------------------------------------------------------------------------
+    </p>
+    <p>
+      <h5>AK Bank | Remote Address | Under Developement</h5>
   </body>
 </html>

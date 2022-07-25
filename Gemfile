@@ -73,4 +73,5 @@ group :test do
   gem "httparty"
   gem "uri"
   gem "net-http"
+  gem "sidekiq"
 end

@@ -1,4 +1,8 @@
 # Preview all emails at http://localhost:3000/rails/mailers/user_mailer
 class UserMailerPreview < ActionMailer::Preview
 
+    def welcome_email
+        user = User.create(name: "test", email: "akadam1@unb.ca")
+        UserMailer.with(user: user).welcome_email
+    end
 end
