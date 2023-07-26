@@ -7,12 +7,19 @@ class AccountsController < ApplicationController
   # GET /accounts or /accounts.json
   def index
     @accounts = Account.all
-    
+    respond_to do |format|
+      format.json { render json: { status: "success", data: @accounts } }
+      format.html { render :index }
+    end    
   end
 
   # GET /accounts/1 or /accounts/1.json
   def show
     @account = Account.find(params[:id])
+    respond_to do |format|
+      format.json { render json: { status: "success", data: @account } }
+      format.html { render :show }
+    end  
     
   end
 
@@ -36,8 +43,8 @@ class AccountsController < ApplicationController
   # POST /accounts or /accounts.json
   def create
     @account = Account.new(account_params)
-    user = User.create(id: @account.id,name: @account.first_name + " " + @account.last_name,email: @account.email)
-    UserMailer.with(user: user).welcome_email.deliver_now 
+    user = User.create(name: @account.first_name + " " + @account.last_name, email: @account.email)
+    UserMailer.with(user: user).welcome_email.deliver_now
     respond_to do |format|
       if @account.save
         format.json { render json: { status: 'success', message: 'Account was created', data: @account } }
@@ -65,12 +72,9 @@ class AccountsController < ApplicationController
 
   # DELETE /accounts/1 or /accounts/1.json
   def destroy
-    user = User.find(@account.id)
     @account.destroy
-    user.destroy
-    respond_to do |format|
-      redirect_to accounts_path
-    end
+    render json: { status: :deleted, message: 'Account was successfully destroyed.', data: @account } 
+
   end
 
   # PATCH /accounts/1/transact or /accounts/1/transact.json

@@ -3,7 +3,7 @@
                 <%= form_with(model: @account, url: deposit_account_path) do |form |%>
                 <li class="list-group"><div class="mb-3">
                 <%= form.label :Enter_Amount, class: "text text-white"%>
-                <%= form.text_field :balance, class: "form-control", value: "0.0" %>
+                <%= form.text_field :balance, class: "form-control", value: "0" %>
                 </div></li>
                 <br><%= form.submit "Credit", class: "btn btn-dark bg-primary"%>
         <% end %>

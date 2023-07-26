@@ -60,13 +60,12 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 683px;
+        min-height: 93vh;
         background: url('https://4kwallpapers.com/images/walls/thumbs_2t/8312.png') no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
         -o-background-size: cover;
-        height: 682px;
       }
       h1 {
         color: hsl(0, 0%, 28%);
@@ -94,4 +93,24 @@ body {
         100% {
           background-position: 680px;
         }
+    }
+
+    .connect{
+    
+        min-height: 700px;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+      }
+
+      h2 {
+        color: hsl(184, 88%, 53%);
+        font-size: 20px;
+        font-weight: bold;
+        font-family: monospace;
+        letter-spacing: 2px;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
     }
